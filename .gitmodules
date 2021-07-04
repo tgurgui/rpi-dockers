@@ -1,0 +1,3 @@
+[submodule "jenkins-ubuntu"]
+	path = jenkins-ubuntu
+	url = https://github.com/tgurgui/jenkins-ubuntu.git
