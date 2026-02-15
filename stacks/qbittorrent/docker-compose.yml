@@ -1,4 +1,3 @@
-version: "2.1"
 services:
   qbittorrent:
     image: lscr.io/linuxserver/qbittorrent:latest
@@ -12,8 +11,18 @@ services:
     volumes:
       - /home/pi/Documents/torrent/:/config
       - /home/pi/Documents/torrent/downloads:/downloads
+    networks:
+      - proxy-nw  # Connected to both!
     ports:
-      - 8080:8080
+#      - 8080:8080
       - 6881:6881
       - 6881:6881/udp
     restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.torrent.rule=Host(`torrent.local`)"
+      - "traefik.http.services.torrent.loadbalancer.server.port=8080"
+
+networks:
+  proxy-nw:
+    external: true
