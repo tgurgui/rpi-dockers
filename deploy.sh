@@ -1,6 +1,6 @@
 #!/bin/bash
 # 1. Update repository
-git pull origin main
+git pull origin master
 
 # 2. Update all Docker stacks
 for d in stacks/*/ ; do
